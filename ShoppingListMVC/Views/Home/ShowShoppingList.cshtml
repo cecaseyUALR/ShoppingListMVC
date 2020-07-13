@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ShoppingListMVC.Models.ShoppingListItem>
+
+@{
+    ViewData["Title"] = "ShowShoppingList";
+}
+
+<h1>Shopping List</h1>
+
+<table class="table">
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.iscompleted)
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                <a asp-action="UpdateItemAsCompleted" asp-route-name="@item.name">Complete</a> |
+                <a asp-action="DeleteFromList" asp-route-name="@item.name" formaction="delete">Delete</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br />
+<div class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ShoppingList">Add to Shopping List</a>
+</div>
+<br />
